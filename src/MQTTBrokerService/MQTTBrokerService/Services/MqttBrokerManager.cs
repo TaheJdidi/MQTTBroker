@@ -56,6 +56,7 @@ public class MqttBrokerManager : IMqttBrokerManager
     private MqttServer? _mqttServer;
     private BrokerConfiguration _configuration;
     private DateTime? _startedAt;
+    private int _connectedClientCount;
     private readonly object _lock = new();
 
     public MqttBrokerManager(ILogger<MqttBrokerManager> logger, IOptions<BrokerConfiguration> options)
@@ -72,7 +73,7 @@ public class MqttBrokerManager : IMqttBrokerManager
             {
                 IsRunning = _mqttServer?.IsStarted ?? false,
                 StartedAt = _startedAt,
-                ConnectedClients = _mqttServer?.GetClientsAsync().Result.Count ?? 0,
+                ConnectedClients = _connectedClientCount,
                 Port = _configuration.Port
             };
         }
@@ -155,6 +156,7 @@ public class MqttBrokerManager : IMqttBrokerManager
         lock (_lock)
         {
             _startedAt = DateTime.UtcNow;
+            _connectedClientCount = 0;
         }
 
         _logger.LogInformation("MQTT broker started successfully on port {Port}", _configuration.Port);
@@ -193,6 +195,7 @@ public class MqttBrokerManager : IMqttBrokerManager
 
     private Task OnClientConnectedAsync(ClientConnectedEventArgs args)
     {
+        Interlocked.Increment(ref _connectedClientCount);
         _logger.LogInformation(
             "Client connected: {ClientId} from {Endpoint} using protocol {ProtocolVersion}",
             args.ClientId,
@@ -203,6 +206,7 @@ public class MqttBrokerManager : IMqttBrokerManager
 
     private Task OnClientDisconnectedAsync(ClientDisconnectedEventArgs args)
     {
+        Interlocked.Decrement(ref _connectedClientCount);
         _logger.LogInformation(
             "Client disconnected: {ClientId}, Reason: {Reason}",
             args.ClientId,
