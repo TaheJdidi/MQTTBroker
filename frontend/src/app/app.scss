@@ -1,0 +1,82 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .version {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+  }
+
+  .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 8px;
+
+    li {
+      a {
+        display: block;
+        padding: 8px 16px;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+        }
+
+        &.active {
+          background: rgba(255, 255, 255, 0.2);
+          color: white;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  flex: 1;
+  background: #f3f4f6;
+}
+
+.footer {
+  background: #1f2937;
+  color: #9ca3af;
+  padding: 16px 24px;
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+}

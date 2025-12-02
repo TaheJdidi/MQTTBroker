@@ -1,0 +1,101 @@
+<div class="configuration">
+  <h1>Broker Configuration</h1>
+
+  @if (error()) {
+    <div class="alert alert-error">
+      {{ error() }}
+      <button class="close-btn" (click)="error.set(null)">&times;</button>
+    </div>
+  }
+
+  @if (success()) {
+    <div class="alert alert-success">
+      {{ success() }}
+      <button class="close-btn" (click)="success.set(null)">&times;</button>
+    </div>
+  }
+
+  <div class="config-card">
+    @if (loading() && !configuration()) {
+      <p class="loading">Loading configuration...</p>
+    } @else {
+      <form (ngSubmit)="saveConfiguration()" #configForm="ngForm">
+        <div class="form-group">
+          <label for="port">MQTT Port</label>
+          <input 
+            type="number" 
+            id="port" 
+            name="port"
+            [(ngModel)]="formData.port"
+            min="1" 
+            max="65535"
+            required
+          />
+          <p class="help-text">The port number the MQTT broker will listen on (default: 1883)</p>
+        </div>
+
+        <div class="form-group">
+          <label for="maxPendingConnections">Max Pending Connections</label>
+          <input 
+            type="number" 
+            id="maxPendingConnections" 
+            name="maxPendingConnections"
+            [(ngModel)]="formData.maxPendingConnections"
+            min="1" 
+            max="10000"
+          />
+          <p class="help-text">Maximum number of pending connections in the queue</p>
+        </div>
+
+        <div class="form-group">
+          <label for="communicationTimeout">Communication Timeout (seconds)</label>
+          <input 
+            type="number" 
+            id="communicationTimeout" 
+            name="communicationTimeout"
+            [(ngModel)]="formData.communicationTimeout"
+            min="1" 
+            max="300"
+          />
+          <p class="help-text">Timeout for communication operations in seconds</p>
+        </div>
+
+        <div class="form-group checkbox">
+          <label>
+            <input 
+              type="checkbox" 
+              name="enableAuthentication"
+              [(ngModel)]="formData.enableAuthentication"
+            />
+            Enable Authentication
+          </label>
+          <p class="help-text">Require username/password for client connections</p>
+        </div>
+
+        <div class="form-group checkbox">
+          <label>
+            <input 
+              type="checkbox" 
+              name="enableVerboseLogging"
+              [(ngModel)]="formData.enableVerboseLogging"
+            />
+            Enable Verbose Logging
+          </label>
+          <p class="help-text">Log detailed message information (may impact performance)</p>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" [disabled]="loading()">
+            Save Configuration
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()" [disabled]="loading()">
+            Reset
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="loadConfiguration()" [disabled]="loading()">
+            Reload
+          </button>
+        </div>
+      </form>
+    }
+  </div>
+</div>
