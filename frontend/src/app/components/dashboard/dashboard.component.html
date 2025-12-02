@@ -1,0 +1,87 @@
+<div class="dashboard">
+  <h1>MQTT Broker Dashboard</h1>
+
+  @if (error()) {
+    <div class="alert alert-error">
+      {{ error() }}
+      <button class="close-btn" (click)="error.set(null)">&times;</button>
+    </div>
+  }
+
+  <div class="status-card">
+    <h2>Broker Status</h2>
+    @if (loading()) {
+      <p class="loading">Loading...</p>
+    } @else if (status()) {
+      <div class="status-grid">
+        <div class="status-item">
+          <span class="label">Status:</span>
+          <span class="value" [class.running]="status()!.isRunning" [class.stopped]="!status()!.isRunning">
+            {{ status()!.isRunning ? 'Running' : 'Stopped' }}
+          </span>
+        </div>
+        <div class="status-item">
+          <span class="label">Port:</span>
+          <span class="value">{{ status()!.port }}</span>
+        </div>
+        <div class="status-item">
+          <span class="label">Connected Clients:</span>
+          <span class="value">{{ status()!.connectedClients }}</span>
+        </div>
+        <div class="status-item">
+          <span class="label">Uptime:</span>
+          <span class="value">{{ formatUptime(status()!.uptime) }}</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        @if (status()!.isRunning) {
+          <button class="btn btn-danger" (click)="stopBroker()" [disabled]="loading()">
+            Stop Broker
+          </button>
+        } @else {
+          <button class="btn btn-success" (click)="startBroker()" [disabled]="loading()">
+            Start Broker
+          </button>
+        }
+        <button class="btn btn-secondary" (click)="loadData()" [disabled]="loading()">
+          Refresh
+        </button>
+      </div>
+    } @else {
+      <p>Unable to fetch broker status</p>
+    }
+  </div>
+
+  @if (clients().length > 0) {
+    <div class="clients-card">
+      <h2>Connected Clients</h2>
+      <table class="clients-table">
+        <thead>
+          <tr>
+            <th>Client ID</th>
+            <th>Endpoint</th>
+            <th>Protocol</th>
+            <th>Connected At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (client of clients(); track client.clientId) {
+            <tr>
+              <td>{{ client.clientId }}</td>
+              <td>{{ client.endpoint || 'N/A' }}</td>
+              <td>{{ client.protocolVersion }}</td>
+              <td>{{ client.connectedAt | date:'short' }}</td>
+              <td>
+                <button class="btn btn-sm btn-danger" (click)="disconnectClient(client.clientId)">
+                  Disconnect
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
