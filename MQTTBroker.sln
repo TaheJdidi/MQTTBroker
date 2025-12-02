@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MQTTBrokerService", "MQTTBrokerService", "{756FB0E7-C7DE-B91D-4649-5C97DD2CB026}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTBrokerService", "src\MQTTBrokerService\MQTTBrokerService\MQTTBrokerService.csproj", "{3D74C560-8D3A-405E-ABC0-1A038297A0B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MQTTBrokerService.Tests", "MQTTBrokerService.Tests", "{16A57129-B9E3-20EE-D2A7-A9F3037DE46A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTBrokerService.Tests", "src\MQTTBrokerService.Tests\MQTTBrokerService.Tests\MQTTBrokerService.Tests.csproj", "{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Debug|x64.Build.0 = Debug|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Debug|x86.Build.0 = Debug|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Release|x64.ActiveCfg = Release|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Release|x64.Build.0 = Release|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Release|x86.ActiveCfg = Release|Any CPU
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6}.Release|x86.Build.0 = Release|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Debug|x64.Build.0 = Debug|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Debug|x86.Build.0 = Debug|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Release|x64.ActiveCfg = Release|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Release|x64.Build.0 = Release|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Release|x86.ActiveCfg = Release|Any CPU
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{756FB0E7-C7DE-B91D-4649-5C97DD2CB026} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{3D74C560-8D3A-405E-ABC0-1A038297A0B6} = {756FB0E7-C7DE-B91D-4649-5C97DD2CB026}
+		{16A57129-B9E3-20EE-D2A7-A9F3037DE46A} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{5D5C10B8-3F20-46D0-8B7B-EDA9B04229ED} = {16A57129-B9E3-20EE-D2A7-A9F3037DE46A}
+	EndGlobalSection
+EndGlobal
