@@ -1,8 +1,11 @@
 ﻿using System.Net;
-using MQTTnet;
-using MQTTnet.Server;
+using System.Security.Cryptography.X509Certificates;
+
 using Microsoft.Extensions.Configuration;
+
+using MQTTnet;
 using MQTTnet.Protocol;
+using MQTTnet.Server;
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
@@ -29,6 +32,13 @@ var mqttServerOptionsBuilder = new MqttServerOptionsBuilder()
 if (useTls)
 {
     mqttServerOptionsBuilder = mqttServerOptionsBuilder.WithEncryptedEndpoint();
+    var cert = new X509Certificate2(
+     brokerConfig["TlsCertificatePath"] ??"",
+    "io.123",
+    X509KeyStorageFlags.MachineKeySet |
+    X509KeyStorageFlags.PersistKeySet |
+    X509KeyStorageFlags.Exportable);
+    mqttServerOptionsBuilder.WithEncryptionCertificate(cert);
 }
 
 var options = mqttServerOptionsBuilder.Build();
